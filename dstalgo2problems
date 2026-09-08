@@ -1,0 +1,40 @@
+// 1. Five Inputs
+Console.WriteLine("Five Inputs Problem");
+Console.WriteLine("Please input five times.");
+
+string? one = Console.ReadLine();
+string? two = Console.ReadLine();
+string? three = Console.ReadLine();
+string? four = Console.ReadLine();
+string? five = Console.ReadLine();
+
+Console.WriteLine();
+Console.WriteLine(one);
+Console.WriteLine(two);
+Console.WriteLine(three);
+Console.WriteLine(four);
+Console.WriteLine(five);
+Console.WriteLine();
+
+// 2. Temperature Converter
+Console.WriteLine("Temperature Converter Problem");
+
+Console.WriteLine("Please input temperature in Celsius.");
+double celsius = Convert.ToInt32(Console.ReadLine());
+
+double fahrenheit = (celsius * 9 / 5) + 32;
+double kelvin = celsius + 273.15;
+
+Console.WriteLine();
+
+Console.WriteLine(celsius + " (Celsius > 30)");
+Console.WriteLine(celsius > 30);
+Console.WriteLine();
+
+Console.WriteLine(fahrenheit + " (Fahrenheit > 86)");
+Console.WriteLine(fahrenheit > 86);
+Console.WriteLine();
+
+Console.WriteLine(kelvin + " (Kelvin > 300)");
+Console.WriteLine(kelvin > 300);
+Console.WriteLine();
