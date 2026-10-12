@@ -1,0 +1,322 @@
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+
+namespace FLORES_Week_5_6_Lab_Activity
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        // O(1)
+        private void button1_Click(object sender, EventArgs e) // pick array number
+        {
+            int[] numbers = { 10, 15, 20 };
+            int i;
+            if (!int.TryParse(textBox1.Text, out i) || i < 0 || i >= numbers.Length)
+            {
+                button1result.Text = "! Invalid Input !";
+                return;
+            }
+            button1result.Text = "Result 1: " + numbers[i];
+        }
+        private void button2_Click(object sender, EventArgs e) // even or odd
+        {
+            int i;
+            if (!int.TryParse(textBox2.Text, out i))
+            {
+                button2result.Text = "! Invalid Input !";
+                return;
+            }
+            if (i % 2 == 0)
+                button2result.Text = "Result 2: Even";
+            else
+                button2result.Text = "Result 2: Odd";
+        }
+        private void button3_Click(object sender, EventArgs e) // check prices
+        {
+            Dictionary<string, int> prices = new Dictionary<string, int>();
+            prices["bread"] = 35;
+            prices["eggs"] = 60;
+            prices["milk"] = 40;
+
+            string key = textBox3.Text.Trim().ToLower();
+            if (prices.ContainsKey(key))
+                button3result.Text = "Result 3: $" + prices[key];
+            else
+                button3result.Text = "! Invalid Input !";
+        }
+
+        // O(log n)
+        private void button4_Click(object sender, EventArgs e) // binary search
+        {
+            int[] numbers = { 10, 20, 30, 40, 50 };
+            int i;
+            if (!int.TryParse(textBox4.Text, out i))
+            {
+                button4result.Text = "! Invalid Input !";
+                return;
+            }
+
+            int left = 0, right = numbers.Length - 1, count = 0;
+            while (left <= right)
+            {
+                int mid = (left + right) / 2;
+                count++;
+                if (numbers[mid] == i)
+                {
+                    button4result.Text = "Result 1: " + i + " found in " + count + " steps";
+                    return;
+                }
+                if (numbers[mid] < i)
+                    left = mid + 1;
+                else
+                    right = mid - 1;
+            }
+            button4result.Text = "Result 1: " + i + " not found after " + count + " steps";
+        }
+        private void button5_Click(object sender, EventArgs e) // keep dividing by 2
+        {
+            int i;
+            if (!int.TryParse(textBox5.Text, out i) || i < 1)
+            {
+                button5result.Text = "! Invalid Input !";
+                return;
+            }
+            int count = 0, original = i;
+            while (i > 1)
+            {
+                i /= 2;
+                count++;
+            }
+            button5result.Text = "Result 2: " + original + " reached " + i + " in " + count + " steps";
+        }
+        private void button6_Click(object sender, EventArgs e) // guess number
+        {
+            int i;
+            if (!int.TryParse(textBox6.Text, out i) || i < 1)
+            {
+                button6result.Text = "! Invalid Input !";
+                return;
+            }
+            int count = 0, original = i;
+            while (i > 1)
+            {
+                i = (i + 1) / 2;
+                count++;
+            }
+            button6result.Text = "Result 3: " + original + " reached " + i + " in " + count + " steps";
+        }
+
+        // O(n)
+        private void button7_Click(object sender, EventArgs e) // find a number
+        {
+            int[] numbers = { 10, 20, 30, 40, 50 };
+            int i;
+            int count = 0;
+
+            if (!int.TryParse(textBox7.Text, out i))
+            {
+                button8result.Text = "! Invalid Input !";
+                return;
+            }
+            foreach (int n in numbers)
+            {
+                count++;
+                if (n == i)
+                {
+                    button7result.Text = "Result 1: " + i + " found in " + count + " steps";
+                    return;
+                }
+            }
+            button7result.Text = "Result 1: " + i + " not found after " + count + " steps";
+        }
+        private void button8_Click(object sender, EventArgs e) // find largest number
+        {
+            int[] numbers = { 15, 40, 10, 50, 25 };
+            int i;
+
+            if (!int.TryParse(textBox8.Text, out i))
+            {
+                button8result.Text = "! Invalid Input !";
+                return;
+            }
+            int largest = numbers[0], count = 0;
+            foreach (int n in numbers)
+            {
+                count++;
+                if (n > largest)
+                    largest = n;
+            }
+
+            if (i == largest)
+                button8result.Text = "Result 2: " + i + " is the largest in " + count + " steps";
+            else
+                button8result.Text = "Result 2: " + i + " is not the largest";
+        }
+        private void button9_Click(object sender, EventArgs e) // calculate sum of array
+        {
+            int[] numbers = { 10, 20, 30, 40, 50 };
+            int i;
+
+            if (!int.TryParse(textBox9.Text, out i))
+            {
+                button9result.Text = "! Invalid Input !";
+                return;
+            }
+            int sum = 0, count = 0;
+            foreach (int n in numbers)
+            {
+                sum += n;
+                count++;
+            }
+
+            if (i == sum)
+                button9result.Text = "Result 3: " + i + " matches in " + count + " steps";
+            else
+                button9result.Text = "Result 3: " + i + " doesn't match the sum";
+        }
+
+        // O(n²)
+        private void button10_Click(object sender, EventArgs e) // compare every pair
+        {
+            int i;
+            if (!int.TryParse(textBox10.Text, out i) || i < 1 || i > 10)
+            {
+                button10result.Text = "! Invalid Input !";
+                return;
+            }
+
+            int count = 0;
+            for (int x = 1; x <= i; x++)
+            {
+                for (int y = 1; y <= i; y++)
+                {
+                    count++;
+                }
+            }
+
+            button10result.Text = "Result 1: Compared " + count + " pairs";
+        }
+        private void button11_Click(object sender, EventArgs e) // multiplication table
+        {
+            int i;
+            int count = 0;
+            string result = "";
+
+            if (!int.TryParse(textBox11.Text, out i) || i < 1 || i > 10)
+            {
+                button11result.Text = "! Invalid Input !";
+                return;
+            }
+            for (int x = 1; x <= i; x++)
+            {
+                for (int y = 1; y <= i; y++)
+                {
+                    count++;
+                    result += (x * y) + " ";
+                }
+                result += "\n";
+            }
+
+            button11result.Text = "Result 2: \n" + result;
+        }
+        private void button12_Click(object sender, EventArgs e) // print a star square
+        {
+            int i;
+            int count = 0;
+            string result = "";
+
+            if (!int.TryParse(textBox12.Text, out i) || i < 1 || i > 10)
+            {
+                button12result.Text = "! Invalid Input !";
+                return;
+            }
+            for (int x = 1; x <= i; x++)
+            {
+                for (int y = 1; y <= i; y++)
+                {
+                    result += "* ";
+                    count++;
+                }
+                result += "\n";
+            }
+
+            button12result.Text = "Result 3: \n" + result;
+        }
+
+        // O(2ⁿ)
+        private void button13_Click(object sender, EventArgs e) // fibonacci
+        {
+            int i;
+            if (!int.TryParse(textBox13.Text, out i) || i < 0 || i > 20)
+            {
+                button13result.Text = "! Invalid Input !";
+                return;
+            }
+
+            int count = 0;
+            int result = Fibonacci(i, ref count);
+            button13result.Text = "Result 1: Fibonacci(" + i + ") = " + result;
+        }
+        private int Fibonacci(int n, ref int count)
+        {
+            count++;
+            if (n <= 1)
+                return n;
+
+            return Fibonacci(n - 1, ref count) + Fibonacci(n - 2, ref count);
+        }
+        // -- //
+        private void button14_Click(object sender, EventArgs e) // count possible choices
+        {
+            int i;
+            if (!int.TryParse(textBox14.Text, out i) || i < 0 || i > 20)
+            {
+                button14result.Text = "! Invalid Input !";
+                return;
+            }
+
+            int count = 0;
+            int result = Choices(i, ref count);
+            button14result.Text = "Result 2: " + i + " steps = " + result + " choices.";
+        }
+        private int Choices(int n, ref int count)
+        {
+            count++;
+            if (n == 0)
+                return 1;
+
+            return Choices(n - 1, ref count) + Choices(n - 1, ref count);
+        }
+        // -- //
+        private void button15_Click(object sender, EventArgs e) // knapsack
+        {
+            int i;
+            if (!int.TryParse(textBox15.Text, out i) || i < 0 || i > 20)
+            {
+                button15result.Text = "! Invalid Input !";
+                return;
+            }
+
+            int result = Knapsack(i, 0);
+            button15result.Text = "Result 3: Max value = " + result + ".";
+        }
+        private int Knapsack(int capacity, int n)
+        {
+            int[] weights = { 2, 3, 4, 5 };
+            int[] values = { 3, 4, 5, 6 };
+
+            if (n == 4 || capacity == 0)
+                return 0;
+
+            if (weights[n] > capacity)
+                return Knapsack(capacity, n + 1);
+
+            return Math.Max(
+                Knapsack(capacity, n + 1),
+                values[n] + Knapsack(capacity - weights[n], n + 1)
+            );
+        }
+    }
+}
